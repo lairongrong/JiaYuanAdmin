@@ -1,0 +1,239 @@
+<div id="header" class="head">
+	<div class="head_box">
+		<div class="inner wrp">
+			<h1 class="logo"><a href="SignIn.html" title="社区公众平台">社区公众平台</a>
+			</h1>
+			<div class="account">
+				<div class="account_meta account_info">
+					<a class="nickname" href="LinkToUserProfile">
+					用户名</a></div>
+				<div class="account_meta account_logout">
+					<a id="logout" href="LinkToLogout">
+					退出</a> </div>
+				<div class="account_meta help">
+					<a class="help" href="LinkToHelp">
+					帮助</a></div>
+				<div class="account_meta contact_us">
+					<a class="contactUs" href="LinkToContactUs">
+					联系我们</a></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="body" class="body page_index">
+	<div id="js_container_box" class="container_box side_l">
+		<div class="col_side">
+			<div id="menuBar" class="menu_box">
+			</div>
+			<script type="text/javascript">
+    function _report(type, msg){
+        var _img = new Image(1, 1);
+        _img.src = "/cgi-bin/jslog?1=1"
+            + "&content=" + encodeURIComponent(msg)
+            + "&id=" + type
+            + "&level=error";
+    }
+(function(){
+        try{
+            var cookies = {};
+
+            cookies.stringify = function(obj){
+                var res = [];
+                for (var key in obj){
+                    res.push(key + "=" + obj[key]);
+                }
+                return res.join(",");
+            };
+            cookies.parse = function(str){
+                var 
+                    arr = str.split('|'),
+                    obj = {};
+
+                for (var i = 0; i < arr.length; ++i){
+                    var 
+                        val = arr[i],
+                        kv = val.split(":"),
+                        k = kv[0],
+                        v = kv[1].split(",");
+                    obj[k] = obj[k] || {};
+                    for (var j = 0; j < v.length; ++j){
+                        var tmp = v[j].split("=");
+                        obj[k][tmp[0]] = tmp[1];
+                    }
+                        
+                }
+                return obj;
+            };
+            cookies.set = function (key, value, days, param){
+                days = days || 30;
+                var exp  = new Date(); 
+
+                exp.setTime(exp.getTime() + days*24*60*60*1000);
+                if (!!param){
+                    var res = [];
+                    $.each(param, function(key, value){
+                        res.push(";" + key + "=" + value);
+                    });
+                    param = res.join("");
+                }else{
+                    param = "";    
+                }
+                
+                var tmp = "test cookie";
+                document.cookie = key + "="+ encodeURIComponent(value||"") + ";expires=" + exp&&exp.toGMTString() + param;
+            };
+
+            cookies.get = function(_asName) {
+                var _oRegExp = (new RegExp(["(^|;|\\s+)" , (_asName).replace(/([\^\.\[\$\(\)\|\*\+\?\{\\])/ig, "\\$1"), "=([^;]*);?"].join("")));
+
+                if(_oRegExp.test(document.cookie))
+                {
+                    //某些畸形浏览器，decode可能会出错
+                    try {
+                        return decodeURIComponent(RegExp["$2"]);
+                    }
+                    catch(e) {
+                        return RegExp["$2"];
+                    }
+                }
+            };
+
+            window.Cookies = cookies;
+        }catch(e){
+            _report(3, '[fakeid=2399830374] [script] [url=' + location.href + '] [useragent=' + window.navigator.userAgent + '] [src=cookie error] [exception=' + e + ']');
+        }
+})();
+
+(function(){
+        try{
+    var menuData = {
+    "function" : {
+    "name" : '消息',
+    "sub" : {
+    "material" : {name:"素材管理", url:["LinkToMaterialManagement"]},
+    "message" : {name:"消息管理", url:"Link"},
+    "masssend" : {name:"消息群发", url:["Link"]}
+    }
+    },
+    "funs" : {
+    "name" : '用户',
+    "sub" : {
+    "funsGroup" : {name:"用户分类", url:"Link"},
+    "funsManagement" : {name:"用户管理", url:"Link"}    
+    }
+    },
+    "statistics" : {
+    "name" : '统计',
+    "sub" : {
+    "message" : {name:"消息分析", url:"Link"},
+    "funs" : {name:"用户分析", url:"Link"}
+    }
+    }
+    };
+
+            var menuJson = {}, uin = "2399830374";
+                var primary_nav = "function";
+            menuJson[primary_nav] = menuJson[primary_nav] || {};
+            menuJson[primary_nav]["material"] = {primary:"function", selected:""==="1", nav_flag:1};
+                        var primary_nav = "function";
+            menuJson[primary_nav] = menuJson[primary_nav] || {};
+            menuJson[primary_nav]["message"] = {primary:"function", selected:""==="1", nav_flag:1};
+                        var primary_nav = "function";
+            menuJson[primary_nav] = menuJson[primary_nav] || {};
+            menuJson[primary_nav]["masssend"] = {primary:"function", selected:""==="1", nav_flag:1};
+                        var primary_nav = "funs";
+            menuJson[primary_nav] = menuJson[primary_nav] || {};
+            menuJson[primary_nav]["funsGroup"] = {primary:"funs", selected:""==="1", nav_flag:1};
+                        var primary_nav = "funs";
+            menuJson[primary_nav] = menuJson[primary_nav] || {};
+            menuJson[primary_nav]["funsManagement"] = {primary:"funs", selected:""==="1", nav_flag:1};
+                        var primary_nav = "statistics";
+            menuJson[primary_nav] = menuJson[primary_nav] || {};
+            menuJson[primary_nav]["message"] = {primary:"statistics", selected:""==="1", nav_flag:1};
+                        var primary_nav = "statistics";
+            menuJson[primary_nav] = menuJson[primary_nav] || {};
+            menuJson[primary_nav]["funs"] = {primary:"statistics", selected:""==="1", nav_flag:1};
+            ;
+
+                function getObjLength(obj){
+                var c = 0;
+                for (var j in obj){c++;}
+                return c;
+            }
+            function formatMenuData(menuJson, menuData){
+                var 
+                    status = window.Cookies.get("menu_status");
+
+                status = !status ? {} : Cookies.parse(status);
+                status = status[uin] || {};
+
+                for (var primary_id in menuJson){
+                    var menuSubJson = menuJson[primary_id];
+                    for (var nav_id in menuSubJson){
+                        var item = menuSubJson[nav_id];
+                        if (!!item.primary){
+                            var 
+                                primary = item.primary,
+                                menu = menuData[primary],
+                                sub = menu.sub[nav_id];
+
+                            if (!!status[primary]){
+                                menu.isOpen = true;
+                            }
+                            if (!!sub && item.nav_flag > 0){
+                                sub.isShow = true;
+                                sub.isSelected = item.selected;
+                                sub.url = ([].concat(sub.url))[item.nav_flag-1] + '&token=682047641&lang=zh_CN';
+                            }
+                        }
+                    }
+                }
+
+                return menuData;
+            }
+
+            function render(data){
+                var 
+                    d_len = getObjLength(data),
+                    d_c = 0,
+                    html = [];
+
+                for (var key in data){
+                    var 
+                        menu = data[key],
+                        sub = menu.sub,
+                        sub_html = [],
+                        c = 0,
+                        len = getObjLength(sub),
+                        isSelected = false;
+
+                    for (var j in sub){
+                        var item = sub[j];
+                        if (item.isShow){
+                            c++;
+                            isSelected = isSelected || item.isSelected;
+                            sub_html.push(['<dd id="menu_', j, '" class="menu_item ', (c==len?" no_extra ":""), (item.isSelected?" selected ":""), '"><a href="', item.url, '">', item.name, "</a></dd>"].join(""));
+                        } 
+                    }
+                    if (c > 0){
+                        d_c++;
+                        html.push([
+                            '<dl id="menu_', key, '" class="menu ', (d_c==1?" no_extra ": (d_c==d_len?"extra":"")), (isSelected?" selected ":""), ' ', (isSelected || menu.isOpen?"":"closed"), '">',
+                            '<dt class="menu_title"><i class="icon_menu ', key, '"></i><i class="icon_menu_switch"></i>', menu.name,menu.isNew?'<i class="icon_common new"></i>':"", '</dt>', 
+                            sub_html.join(''),
+                            '</dl>'
+                        ].join(""));
+                    }else{
+                        d_len--;
+                    }
+                }
+                document.getElementById('menuBar').innerHTML = html.join('');
+            }
+
+            render(formatMenuData(menuJson, menuData));
+        }catch(e){
+            _report(3, '[fakeid=2399830374] [script] [url=' + location.href + '] [useragent=' + window.navigator.userAgent + '] [src=menu error] [exception=' + e + ']');
+        }
+})();
+</script>
+</div>
